@@ -18,14 +18,20 @@ MinistralはHugging Face形式の4分割safetensorsだけを保存する。
 
 ## 切り替え
 
+見本の `.sample.yaml` を `.yaml` にコピーし、コピー先を各マシンに合わせて編集する。
 現在のサーバーを終了してから、次のいずれかを実行する。同一GPU・ポートでの同時起動はしない。
 
 ```bash
-./scripts/start.sh configs/local.yaml
-./scripts/start.sh configs/gpt-oss-20b.sample.yaml
+cp configs/server.sample.yaml configs/server.yaml
+./scripts/start.sh configs/server.yaml
+cp configs/gpt-oss-20b.sample.yaml configs/gpt-oss-20b.yaml
+./scripts/start.sh configs/gpt-oss-20b.yaml
+cp configs/ministral-3-8b.sample.yaml configs/ministral-3-8b.yaml
 ./scripts/start.sh configs/ministral-3-8b.yaml
-./scripts/start.sh configs/phi-4-mini.sample.yaml
-./scripts/start.sh configs/gemma-4-e4b.sample.yaml
+cp configs/phi-4-mini.sample.yaml configs/phi-4-mini.yaml
+./scripts/start.sh configs/phi-4-mini.yaml
+cp configs/gemma-4-e4b.sample.yaml configs/gemma-4-e4b.yaml
+./scripts/start.sh configs/gemma-4-e4b.yaml
 ```
 
 起動例のメモリ設定は出発点。20K入力での最適な並列数を保証しない。

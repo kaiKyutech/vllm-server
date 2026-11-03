@@ -29,3 +29,5 @@
 - 生成既定値は configs/generation/ の根拠付きJSONで管理し、クライアントの明示指定を優先する。
 - thinkingの省略時は公式テンプレートの既定を維持する。Qwenの明示OFF時のみ非thinkingの推奨値を選ぶ。
 - ダウンロード時はsafetensors索引の1組だけを取得し、original/やconsolidated重複版を取得しない。
+
+- 起動YAMLは `configs/*.sample.yaml` のみGit管理。使用時は `.sample` を外してコピーし、コピー先を編集する。既存ローカル設定は上書きしない。

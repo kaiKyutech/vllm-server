@@ -318,3 +318,13 @@ configs/local.yamlはQwen用のまま。その他3モデルは依然として実
 今回の公開依頼は、将来の無条件なcommit/push許可ではない。
 サーバー操作・GPU処理はこの公開作業では行っていない。
 GitHub連携の認証と、このマシンのgit push用認証は別。後者は未設定。
+
+
+## 2026-11-03 設定ファイル運用の統一（最新）
+
+ユーザーの希望で、GitHubの起動YAMLはconfigs/*.sample.yamlのみ管理する。
+Ministralをministral-3-8b.sample.yamlに改名。元のministral-3-8b.yamlはローカルに保持。
+使用側は.sampleを外したコピーを作り、ハードに合わせて編集してstart.shへ渡す。
+.gitignoreでconfigs直下の非sample YAMLを除外。generation/*.jsonは引き続き共有する。
+README、モデル一覧、3090向け手順を更新。既存local.yamlとサーバーには触れていない。
+古い記録にある非sampleの起動コマンドは、コピー先として使用できる。

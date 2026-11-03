@@ -71,6 +71,11 @@ LOG_VERBOSITY=4 ./scripts/start.sh configs/local.yaml
 
 ## configを調整する
 
+GitHubで管理する起動YAMLは **`configs/*.sample.yaml`だけ**。
+使用時は `.sample` を外した名前へコピーし、各マシン用に編集する。
+コピー先のYAMLはGit対象外なので、`git pull`で見本を更新してもローカル設定は維持される。
+既存の `configs/local.yaml` も引き続き使用できる。生成設定の `configs/generation/*.json` はGit管理する。
+
 `configs/local.yaml` は vLLM 標準の YAML。CLI引数の `--` を外したキー名を使う。
 必要な vLLM オプションはそのまま追記できる。明示的なCLI引数がYAMLより優先される。
 
@@ -130,12 +135,18 @@ JSONを変更したらサーバーを再起動する。別名のモデルフォ�
 別組織の同名モデルは保存先を分ける。HFモデルIDを直接configへ設定しても、起動はオフラインなので
 未キャッシュのモデルを勝手に取得することはない。
 
-今回取得した追加モデルには `configs/gpt-oss-20b.sample.yaml`、`ministral-3-8b.yaml`、
+今回取得した追加モデルには `configs/gpt-oss-20b.sample.yaml`、`ministral-3-8b.sample.yaml`、
 `phi-4-mini.sample.yaml`、`gemma-4-e4b.sample.yaml` を用意した。
 これらはGPU別ではなくモデル別の起動例。QwenとMinistralは実推論確認済み。
-Ministralは `./scripts/start.sh configs/ministral-3-8b.yaml` で起動する。
+Ministralは見本をコピーして起動する。
+
+```bash
+cp configs/ministral-3-8b.sample.yaml configs/ministral-3-8b.yaml
+# configs/ministral-3-8b.yaml をこのマシンに合わせて編集
+./scripts/start.sh configs/ministral-3-8b.yaml
+```
 他3モデルの実推論は未検証。
-例えば `./scripts/start.sh configs/gpt-oss-20b.sample.yaml` で切り替える。
+他モデルも `.sample.yaml` を `.yaml` にコピーし、コピー先を編集・起動する。
 同じGPU・同じポートで複数モデルを同時起動することは想定しない。
 
 ## API接続と外部公開
@@ -220,7 +231,7 @@ JSONLは1行1リクエスト。例えば:
 | `runtime/huggingface/` | HFの管理情報等（モデル本体はmodelsに直接保存） | 対象外 |
 | `runtime/vllm-cache/` / `runtime/triton-cache/` | コンパイル結果 | 対象外 |
 | `runtime/` | ログ・測定結果・ローカルデータ | 対象外 |
-| `configs/local.yaml` / `.env` | マシン設定・秘密情報 | 対象外 |
+| `configs/*.yaml`（`.sample.yaml`以外） / `.env` | マシン設定・秘密情報 | 対象外 |
 | `pyproject.toml` / `uv.lock` / サンプル設定・スクリプト | 別環境への再現に必要なファイル | 対象 |
 
 このDocker環境では **srv11配下だけが再起動後も残る** 前提で、仮想環境・モデル・
