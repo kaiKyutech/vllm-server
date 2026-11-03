@@ -1,0 +1,6 @@
+{
+  "model": "google/gemma-4-E4B-it",
+  "source": "https://huggingface.co/google/gemma-4-E4B-it/blob/main/generation_config.json",
+  "basis": "モデル付属generation_configのtemperature/top_p/top_k。thinkingの省略時動作は公式テンプレートに任せる。",
+  "defaults": {"temperature": 1.0, "top_p": 0.95, "top_k": 64, "min_p": 0.0, "presence_penalty": 0.0, "repetition_penalty": 1.0}
+}

@@ -1,0 +1,21 @@
+# コピーして configs/local.yaml を編集する。GPU 別の設定ファイルは不要。
+model: models/Qwen3.5-9B
+served-model-name: qwen35-9b
+host: 127.0.0.1
+port: 8000
+
+dtype: bfloat16
+tensor-parallel-size: 1
+gpu-memory-utilization: 0.95
+# 入力 + thinking + 出力の合計上限。auto も指定可能。
+max-model-len: 32768
+# 固定スロット数ではなく同時処理の上限。実データで調整する。
+max-num-seqs: 32
+max-num-batched-tokens: 16384
+enable-chunked-prefill: true
+language-model-only: true
+reasoning-parser: qwen3
+# モデル付属の生成設定を使う。リクエストの明示指定が優先される。
+generation-config: auto
+# 初期の性能比較では共通 prefix の再利用による偏りを避ける。
+enable-prefix-caching: false

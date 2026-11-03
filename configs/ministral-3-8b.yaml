@@ -1,0 +1,20 @@
+model: models/Ministral-3-8B-Instruct-2512-BF16
+served-model-name: ministral-3-8b
+host: 127.0.0.1
+port: 8000
+dtype: bfloat16
+tokenizer-mode: mistral
+# params.jsonからMistral専用設定（YaRN・attention scalingを含む）を読む。
+# 重みは取得済みのHF分割形式を使うためload-formatはsafetensors。
+config-format: mistral
+load-format: safetensors
+tensor-parallel-size: 1
+gpu-memory-utilization: 0.95
+max-model-len: 32768
+max-num-seqs: 32
+max-num-batched-tokens: 16384
+enable-chunked-prefill: true
+language-model-only: true
+generation-config: auto
+enable-prefix-caching: false
+# メモリ不足時は並列上限・バッチトークン数を調整する。

@@ -1,0 +1,15 @@
+model: models/gpt-oss-20b
+served-model-name: gpt-oss-20b
+host: 127.0.0.1
+port: 8000
+dtype: bfloat16
+tensor-parallel-size: 1
+gpu-memory-utilization: 0.95
+max-model-len: 32768
+max-num-seqs: 32
+max-num-batched-tokens: 16384
+enable-chunked-prefill: true
+generation-config: auto
+enable-prefix-caching: false
+# MXFP4はモデルのquantization_configから自動認識。Harmony形式もvLLMが処理する。
+# A100での実推論はまだ未検証。Qwen用のreasoning-parserは引き継がない。

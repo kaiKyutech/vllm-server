@@ -1,0 +1,6 @@
+{
+  "model": "microsoft/Phi-4-mini-instruct",
+  "source": "https://huggingface.co/microsoft/Phi-4-mini-instruct#inference-with-vllm",
+  "basis": "公式モデルカードのvLLM実行例に合わせtemperature=0。全タスク共通の最適値との主張ではない。",
+  "defaults": {"temperature": 0.0, "top_p": 1.0, "top_k": 0, "min_p": 0.0, "presence_penalty": 0.0, "repetition_penalty": 1.0}
+}

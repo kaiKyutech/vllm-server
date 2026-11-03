@@ -1,0 +1,14 @@
+model: models/Phi-4-mini-instruct
+served-model-name: phi-4-mini
+host: 127.0.0.1
+port: 8000
+dtype: bfloat16
+tensor-parallel-size: 1
+gpu-memory-utilization: 0.95
+max-model-len: 32768
+max-num-seqs: 32
+max-num-batched-tokens: 16384
+enable-chunked-prefill: true
+generation-config: auto
+enable-prefix-caching: false
+# 実推論は未検証。

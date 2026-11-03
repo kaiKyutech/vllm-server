@@ -1,0 +1,6 @@
+{
+  "model": "openai/gpt-oss-20b",
+  "source": "https://huggingface.co/openai/gpt-oss-20b",
+  "basis": "付属generation_configにサンプリング値の指定がないため、vLLMの中立的な既定値を明示。公式の最適値とは称さない。reasoning_effortの省略時動作は公式テンプレートに任せる。",
+  "defaults": {"temperature": 1.0, "top_p": 1.0, "top_k": 0, "min_p": 0.0, "presence_penalty": 0.0, "repetition_penalty": 1.0}
+}
