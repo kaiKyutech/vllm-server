@@ -1,0 +1,11 @@
+.venv/
+.tools/
+runtime/
+models/
+.env
+configs/local.yaml
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.env.*
+!.env.example
